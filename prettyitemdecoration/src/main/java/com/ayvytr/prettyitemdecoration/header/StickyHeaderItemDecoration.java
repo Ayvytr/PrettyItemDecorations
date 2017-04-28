@@ -194,4 +194,12 @@ public class StickyHeaderItemDecoration extends RecyclerView.ItemDecoration
     {
         return headerViewCache.getHeader(parent, position);
     }
+
+    /**
+     * 重绘Header
+     */
+    public void invalidate()
+    {
+        headerViewCache.invalidate();
+    }
 }
