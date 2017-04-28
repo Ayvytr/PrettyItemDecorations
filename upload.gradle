@@ -25,6 +25,7 @@ task javadoc(type: Javadoc) {
     exclude '**/BuildConfig.java'
     exclude '**/R.java'
     source = android.sourceSets.main.java.srcDirs
+    failOnError false
     classpath += configurations.compile
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
@@ -108,3 +109,19 @@ bintray {
     }
 }
 
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId PROJ_ARTIFACTID
+
+            pom {
+                packaging 'aar'
+            }
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', PROJ_DESCRIPTION)
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
