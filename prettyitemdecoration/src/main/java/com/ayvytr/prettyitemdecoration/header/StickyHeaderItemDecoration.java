@@ -162,6 +162,11 @@ public class StickyHeaderItemDecoration extends RecyclerView.ItemDecoration
     private boolean hasItemOffset(int position)
     {
         int id = getHeaderId(position);
+        if(position == 0)
+        {
+            return id > NO_POSITION;
+        }
+
         int preId = getHeaderId(position - 1);
         return id > NO_POSITION && id != preId;
     }
