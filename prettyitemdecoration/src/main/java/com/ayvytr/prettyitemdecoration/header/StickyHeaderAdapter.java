@@ -10,15 +10,26 @@ import android.view.View;
  * @author Ayvytr <a href="https://github.com/Ayvytr" target="_blank">'s GitHub</a>
  * @since 1.0.0
  */
-public interface StickyHeaderAdapter<VH extends RecyclerView.ViewHolder>
-{
+public interface StickyHeaderAdapter<VH extends RecyclerView.ViewHolder> {
     /**
-     * 根据 {@link RecyclerView} 当前Item的位置，获取Header id
+     * 根据 {@link RecyclerView} 当前Item的位置，获取Header id.一般使用英文或者中文拼音首字母作为id返回.
      *
      * @param position Item真实位置，需要用 {@link RecyclerView#getChildAdapterPosition(View)} 获取
      * @return Header id
      */
     int getId(int position);
+
+    /**
+     * 根据id获取真实的Position.
+     * <p>
+     * 请看一下建议，
+     * <p>
+     * 使用SparseArray，在{@link #getId(int)} 保存真实Position，然后这个方法直接返回保存的Position.
+     *
+     * @param id id
+     * @return 真实position
+     */
+    int getPosition(int id);
 
     /**
      * 返回当前 Header 的ViewHolder
