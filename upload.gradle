@@ -120,7 +120,6 @@ publishing {
             pom.withXml {
                 def root = asNode()
                 root.appendNode('description', PROJ_DESCRIPTION)
-                root.children().last() + pomConfig
             }
         }
     }
