@@ -8,9 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.ayvytr.easyandroid.tools.Convert;
-import com.ayvytr.easyandroid.view.custom.CenterGravityTextView;
 import com.ayvytr.prettyitemdecoration.header.StickyHeaderAdapter;
 import com.ayvytr.prettyitemdecoration.header.StickyHeaderItemDecoration;
 
@@ -27,6 +26,7 @@ public class BasicStickyHeaderActivity extends BaseEasyActivity
     RecyclerView recyclerView;
     private BasicAdapter basicAdapter;
 
+    @Override
     protected void initView(Bundle savedInstanceState)
     {
         ButterKnife.bind(this);
@@ -75,7 +75,7 @@ public class BasicStickyHeaderActivity extends BaseEasyActivity
             char c = 'a';
             for(int i = 0; i < 26; i++)
             {
-                list.add(Convert.toString((char) (c + i)));
+                list.add(String.valueOf((char) (c + i)));
             }
         }
 
@@ -96,6 +96,11 @@ public class BasicStickyHeaderActivity extends BaseEasyActivity
         public int getId(int position)
         {
             return position;
+        }
+
+        @Override
+        public int getPosition(int id) {
+            return 0;
         }
 
         @Override
@@ -120,7 +125,7 @@ public class BasicStickyHeaderActivity extends BaseEasyActivity
         public class Vh extends RecyclerView.ViewHolder
         {
             @BindView(R.id.tv)
-            CenterGravityTextView tv;
+            TextView tv;
 
             public Vh(View view)
             {
