@@ -6,11 +6,12 @@
     android:background="@color/pink"
     android:orientation="vertical">
 
-    <com.ayvytr.easyandroid.view.custom.CenterGravityTextView
+    <TextView
         android:id="@+id/tv"
         android:layout_width="@dimen/_100dp"
         android:layout_height="match_parent"
         android:text="Content"
+        android:gravity="center"
         android:textSize="@dimen/_24sp"
         android:textColor="@color/yellow_green"
         android:textStyle="bold"/>

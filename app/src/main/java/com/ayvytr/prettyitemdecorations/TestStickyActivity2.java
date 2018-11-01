@@ -6,9 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.ayvytr.easyandroid.tools.Convert;
-import com.ayvytr.easyandroid.view.custom.CenterGravityTextView;
+import com.ayvytr.easyandroid.view.activity.BaseActivity;
 import com.ayvytr.prettyitemdecoration.PrettyItemDecoration;
 import com.ayvytr.prettyitemdecoration.header.StickyHeaderAdapter;
 import com.ayvytr.prettyitemdecoration.header.StickyHeaderItemDecoration;
@@ -19,13 +19,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TestStickyActivity2 extends BaseEasyActivity
+public class TestStickyActivity2 extends BaseActivity
 {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private BasicAdapter basicAdapter;
 
+    @Override
     protected void initView(Bundle savedInstanceState)
     {
         ButterKnife.bind(this);
@@ -62,7 +63,7 @@ public class TestStickyActivity2 extends BaseEasyActivity
             char c = 'a';
             for(int i = 0; i < 26; i++)
             {
-                list.add(Convert.toString((char) (c + i)));
+                list.add(String.valueOf((char) (c + i)));
             }
         }
 
@@ -107,6 +108,11 @@ public class TestStickyActivity2 extends BaseEasyActivity
         }
 
         @Override
+        public int getPosition(int id) {
+            return id;
+        }
+
+        @Override
         public HeaderVh onCreateHeaderViewHolder(RecyclerView parent)
         {
             return new HeaderVh(LayoutInflater.from(parent.getContext())
@@ -123,7 +129,7 @@ public class TestStickyActivity2 extends BaseEasyActivity
         public class Vh extends RecyclerView.ViewHolder
         {
             @BindView(R.id.tv)
-            CenterGravityTextView tv;
+            TextView tv;
 
             public Vh(View view)
             {
@@ -140,7 +146,7 @@ public class TestStickyActivity2 extends BaseEasyActivity
         public class HeaderVh extends RecyclerView.ViewHolder
         {
             @BindView(R.id.tv)
-            CenterGravityTextView tv;
+            TextView tv;
 
             public HeaderVh(View view)
             {

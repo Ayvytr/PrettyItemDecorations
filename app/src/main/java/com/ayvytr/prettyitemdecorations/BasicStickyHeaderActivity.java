@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ayvytr.easyandroid.view.activity.BaseActivity;
 import com.ayvytr.prettyitemdecoration.header.StickyHeaderAdapter;
 import com.ayvytr.prettyitemdecoration.header.StickyHeaderItemDecoration;
 
@@ -19,7 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BasicStickyHeaderActivity extends BaseEasyActivity
+public class BasicStickyHeaderActivity extends BaseActivity
 {
 
     @BindView(R.id.recyclerView)

@@ -5,10 +5,11 @@
     android:layout_height="@dimen/_50dp"
     android:orientation="vertical">
 
-    <com.ayvytr.easyandroid.view.custom.CenterGravityTextView
+    <TextView
         android:id="@+id/tv"
         android:layout_width="100dp"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:text="Content"
         android:textColor="@color/blue_berry"/>
 

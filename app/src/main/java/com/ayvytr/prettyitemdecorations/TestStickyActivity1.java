@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.ayvytr.easyandroid.tools.Colors;
 import com.ayvytr.easyandroid.tools.Convert;
+import com.ayvytr.easyandroid.view.activity.BaseActivity;
 import com.ayvytr.easyandroid.view.custom.CenterGravityTextView;
 import com.ayvytr.prettyitemdecoration.PrettyItemDecoration;
 
@@ -18,13 +19,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TestStickyActivity1 extends BaseEasyActivity
+public class TestStickyActivity1 extends BaseActivity
 {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private BasicAdapter basicAdapter;
 
+    @Override
     protected void initView(Bundle savedInstanceState)
     {
         ButterKnife.bind(this);
