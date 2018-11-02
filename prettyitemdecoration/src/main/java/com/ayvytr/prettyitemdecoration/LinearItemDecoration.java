@@ -12,14 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * 专用于 {@link android.support.v7.widget.LinearLayoutManager} 使用的 ItemDecoration, 其他LayoutManager也可以使用，但是，
- * 比如GridLayoutManager，并不适用它的所有场景，比如 paddingStart和paddingEnd不为0的时候，Item不满一屏的时候，会有多出的分割线,
- * 显示效果不好.
+ * 专用于 {@link android.support.v7.widget.LinearLayoutManager} 使用的 ItemDecoration, 其他LayoutManager也可以使用，没有
+ * 第一个Item顶部的分割线和最后一个Item底部的分割线(分割线数量为ItemCount - 1).但是，比如GridLayoutManager，并不适用它的所有
+ * 场景，比如 paddingStart和paddingEnd不为0的时候，Item不满一屏的时候，会有多出的分割线,显示效果不好.
  *
  * @author Ayvytr <a href="https://github.com/Ayvytr" target="_blank">'s GitHub</a>
  * @since 2.0.0
  */
-
 public class LinearItemDecoration extends RecyclerView.ItemDecoration {
     private static final int DEFAULT_WIDTH = 1;
     public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;

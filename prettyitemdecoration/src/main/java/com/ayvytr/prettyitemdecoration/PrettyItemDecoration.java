@@ -16,13 +16,16 @@ import android.view.View;
  * {@link RecyclerView} 的 ItemDecoration,
  * {@link RecyclerView#addItemDecoration(RecyclerView.ItemDecoration)}，支持
  * {@link LinearLayoutManager}, {@link GridLayoutManager}, 可自定义方向，颜色，间隔线宽度.
+ * 不建议除LinearLayoutManager的其他LayoutManager使用，因为设计之初是希望兼容3个LayoutManager，但是在某些场景显示
+ * 效果不好，尤其是GridLayoutManager和 StaggeredGridLayoutManager.
  *
  * @author Ayvytr <a href="https://github.com/Ayvytr" target="_blank">'s GitHub</a>
  * @version 2.0.0 修改了默认的 {@link #PrettyItemDecoration#orientation}，和 LinearLayoutManager的默认方向一致.
+ * @see LinearItemDecoration
  * @since 1.0.0
- * @deprecated 不建议除LinearLayoutManager的其他LayoutManager使用，因为设计之初是希望兼容3个LayoutManager，但是在某些场景显示
- * 效果不好，尤其是GridLayoutManager和 StaggeredGridLayoutManager.
+ * @deprecated 弃用，建议使用 {@link LinearItemDecoration}
  */
+@Deprecated
 public class PrettyItemDecoration extends RecyclerView.ItemDecoration {
     private static final int DEFAULT_WIDTH = 1;
     public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
