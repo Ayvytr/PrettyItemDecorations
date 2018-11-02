@@ -155,7 +155,6 @@ public class LinearItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
-        super.getItemOffsets(outRect, itemPosition, parent);
         if(itemPosition != parent.getAdapter().getItemCount() - 1) {
             if(mOrientation == VERTICAL) {
                 outRect.set(0, 0, 0, mDividerWidth);
