@@ -2,7 +2,7 @@ package com.ayvytr.prettyitemdecorations;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.ayvytr.baseadapter.CommonAdapter;
@@ -29,7 +29,7 @@ public class LinearItemDecorationActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         ButterKnife.bind(this);
-        mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        mRv.setLayoutManager(new LinearLayoutManager(getContext()));
         List<String> list = new ArrayList<>();
         for(int i = 0; i < 30; i++) {
             list.add(i + "");
@@ -40,10 +40,10 @@ public class LinearItemDecorationActivity extends BaseActivity {
                 holder.setText(R.id.tv, s);
             }
         });
-        mRv.addItemDecoration(new LinearItemDecoration(LinearItemDecoration.VERTICAL, Color.GRAY, 2,
+        mRv.addItemDecoration(new LinearItemDecoration(LinearItemDecoration.VERTICAL, Color.GRAY, 20,
                 50, 100));
-        mRv.addItemDecoration(new LinearItemDecoration(LinearItemDecoration.HORIZONTAL, Color.GRAY, 2,
-                50, 100));
+//        mRv.addItemDecoration(new LinearItemDecoration(LinearItemDecoration.HORIZONTAL, Color.GRAY, 2,
+//                50, 100));
 //        mRv.addItemDecoration(new PrettyItemDecoration(PrettyItemDecoration.VERTICAL, Color.GRAY));
 //        mRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }

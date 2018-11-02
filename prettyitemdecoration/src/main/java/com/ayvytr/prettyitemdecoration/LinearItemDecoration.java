@@ -112,10 +112,12 @@ public class LinearItemDecoration extends RecyclerView.ItemDecoration {
         int i;
         for(i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
-            parent.getDecoratedBoundsWithMargins(child, mBounds);
-            final int bottom = mBounds.bottom + Math.round(ViewCompat.getTranslationY(child));
-            final int top = bottom - mDividerWidth;
-            canvas.drawRect(left, top, right, bottom, mPaint);
+            if(parent.getChildAdapterPosition(child) != parent.getAdapter().getItemCount() - 1) {
+                parent.getDecoratedBoundsWithMargins(child, mBounds);
+                final int bottom = mBounds.bottom + Math.round(ViewCompat.getTranslationY(child));
+                final int top = bottom - mDividerWidth;
+                canvas.drawRect(left, top, right, bottom, mPaint);
+            }
         }
 
         canvas.restore();
@@ -142,20 +144,27 @@ public class LinearItemDecoration extends RecyclerView.ItemDecoration {
         final int childCount = parent.getChildCount();
         for(int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
-            parent.getLayoutManager().getDecoratedBoundsWithMargins(child, mBounds);
-            final int right = mBounds.right + Math.round(ViewCompat.getTranslationX(child));
-            final int left = right - mDividerWidth;
-            canvas.drawRect(left, top, right, bottom, mPaint);
+            if(parent.getChildAdapterPosition(child) != parent.getAdapter().getItemCount() - 1) {
+                parent.getLayoutManager().getDecoratedBoundsWithMargins(child, mBounds);
+                final int right = mBounds.right + Math.round(ViewCompat.getTranslationX(child));
+                final int left = right - mDividerWidth;
+                canvas.drawRect(left, top, right, bottom, mPaint);
+            }
         }
         canvas.restore();
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        if(mOrientation == VERTICAL) {
-            outRect.set(0, 0, 0, mDividerWidth);
+    public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
+        super.getItemOffsets(outRect, itemPosition, parent);
+        if(itemPosition != parent.getAdapter().getItemCount() - 1) {
+            if(mOrientation == VERTICAL) {
+                outRect.set(0, 0, 0, mDividerWidth);
+            } else {
+                outRect.set(0, 0, mDividerWidth, 0);
+            }
         } else {
-            outRect.set(0, 0, mDividerWidth, 0);
+            outRect.set(0, 0, 0, 0);
         }
     }
 }
