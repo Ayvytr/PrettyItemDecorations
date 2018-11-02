@@ -6,14 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 
-public class StickyHeaderActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sticky_header);
+        setContentView(R.layout.activity_main);
     }
 
     public void onBasic(View view)
@@ -33,5 +33,9 @@ public class StickyHeaderActivity extends AppCompatActivity
 
     public void onItemDecoration(View view) {
         startActivity(new Intent(this, LinearItemDecorationActivity.class));
+    }
+
+    public void onGridItemDecoration(View view) {
+        startActivity(new Intent(this, GridItemDecorationActivity.class));
     }
 }

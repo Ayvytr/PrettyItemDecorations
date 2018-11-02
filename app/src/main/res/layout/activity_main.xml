@@ -6,8 +6,14 @@
     android:orientation="vertical">
 
     <Button
-        android:text="ItemDecoration"
+        android:text="LinearItemDecoration"
         android:onClick="onItemDecoration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="GridItemDecoration"
+        android:onClick="onGridItemDecoration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
