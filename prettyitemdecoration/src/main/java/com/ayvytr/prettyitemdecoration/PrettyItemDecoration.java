@@ -20,9 +20,9 @@ import android.view.View;
  * 效果不好，尤其是GridLayoutManager和 StaggeredGridLayoutManager.
  *
  * @author Ayvytr <a href="https://github.com/Ayvytr" target="_blank">'s GitHub</a>
- * @version 2.0.0 修改了默认的 {@link #PrettyItemDecoration#orientation}，和 LinearLayoutManager的默认方向一致.
+ * @version 1.0.0 修改了默认的 {@link #PrettyItemDecoration#orientation}，和 LinearLayoutManager的默认方向一致.
  * @see LinearItemDecoration
- * @since 1.0.0
+ * @since 0.1.0
  * @deprecated 弃用，建议使用 {@link LinearItemDecoration}
  */
 @Deprecated

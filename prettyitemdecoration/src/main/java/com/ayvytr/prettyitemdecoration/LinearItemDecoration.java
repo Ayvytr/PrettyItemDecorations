@@ -17,7 +17,7 @@ import android.view.View;
  * 场景，比如 paddingStart和paddingEnd不为0的时候，Item不满一屏的时候，会有多出的分割线,显示效果不好.
  *
  * @author Ayvytr <a href="https://github.com/Ayvytr" target="_blank">'s GitHub</a>
- * @since 2.0.0
+ * @since 1.0.0
  */
 public class LinearItemDecoration extends RecyclerView.ItemDecoration {
     private static final int DEFAULT_WIDTH = 1;
