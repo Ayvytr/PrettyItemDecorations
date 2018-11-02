@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ayvytr.easyandroid.view.activity.BaseActivity;
-import com.ayvytr.prettyitemdecoration.PrettyItemDecoration;
+import com.ayvytr.prettyitemdecoration.LinearItemDecoration;
 import com.ayvytr.prettyitemdecoration.header.StickyHeaderAdapter;
 import com.ayvytr.prettyitemdecoration.header.StickyHeaderItemDecoration;
 
@@ -33,8 +33,8 @@ public class TestStickyActivity2 extends BaseActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         basicAdapter = new BasicAdapter();
         recyclerView.setAdapter(basicAdapter);
-        recyclerView.addItemDecoration(new PrettyItemDecoration(PrettyItemDecoration.VERTICAL));
-        recyclerView.addItemDecoration(new PrettyItemDecoration());
+        recyclerView.addItemDecoration(new LinearItemDecoration(LinearItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new LinearItemDecoration());
         recyclerView.addItemDecoration(new StickyHeaderItemDecoration(basicAdapter));
     }
 

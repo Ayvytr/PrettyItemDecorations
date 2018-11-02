@@ -18,11 +18,12 @@ import android.view.View;
  * {@link LinearLayoutManager}, {@link GridLayoutManager}, 可自定义方向，颜色，间隔线宽度.
  *
  * @author Ayvytr <a href="https://github.com/Ayvytr" target="_blank">'s GitHub</a>
+ * @version 2.0.0 修改了默认的 {@link #PrettyItemDecoration#orientation}，和 LinearLayoutManager的默认方向一致.
  * @since 1.0.0
+ * @deprecated 不建议除LinearLayoutManager的其他LayoutManager使用，因为设计之初是希望兼容3个LayoutManager，但是在某些场景显示
+ * 效果不好，尤其是GridLayoutManager和 StaggeredGridLayoutManager.
  */
-
-public class PrettyItemDecoration extends RecyclerView.ItemDecoration
-{
+public class PrettyItemDecoration extends RecyclerView.ItemDecoration {
     private static final int DEFAULT_WIDTH = 1;
     public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
     public static final int VERTICAL = OrientationHelper.VERTICAL;
@@ -43,23 +44,19 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
     //仅供内部使用的View
     private View v;
 
-    public PrettyItemDecoration()
-    {
-        this(OrientationHelper.HORIZONTAL);
+    public PrettyItemDecoration() {
+        this(OrientationHelper.VERTICAL);
     }
 
-    public PrettyItemDecoration(int orientation)
-    {
+    public PrettyItemDecoration(int orientation) {
         this(orientation, DEFAULT_COLOR);
     }
 
-    public PrettyItemDecoration(int orientation, @ColorInt int color)
-    {
+    public PrettyItemDecoration(int orientation, @ColorInt int color) {
         this(orientation, color, DEFAULT_WIDTH);
     }
 
-    public PrettyItemDecoration(int orientation, @ColorInt int color, int dividerWidth)
-    {
+    public PrettyItemDecoration(int orientation, @ColorInt int color, int dividerWidth) {
         this.orientation = orientation;
         this.color = color;
         this.dividerWidth = dividerWidth;
@@ -67,8 +64,7 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
         dividerOffset = (int) (dividerWidth / 2f);
     }
 
-    private void initPaint()
-    {
+    private void initPaint() {
         paint = new Paint();
         paint.setColor(color);
         paint.setStrokeWidth(this.dividerWidth);
@@ -76,39 +72,31 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
 
     @SuppressLint("NewApi")
     @Override
-    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state)
-    {
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
 
-        if(parent.getLayoutManager() == null)
-        {
+        if(parent.getLayoutManager() == null) {
             return;
         }
 
-        if(parent.getClipToPadding())
-        {
+        if(parent.getClipToPadding()) {
             c.clipRect(parent.getPaddingLeft() - dividerOffset,
                     parent.getPaddingTop() - dividerOffset,
                     parent.getWidth() - parent.getPaddingRight() + dividerOffset,
                     parent.getHeight() - parent.getPaddingBottom() + dividerOffset);
         }
 
-        if(orientation == HORIZONTAL)
-        {
+        if(orientation == VERTICAL) {
             drawHorizontal(c, parent);
-        }
-        else
-        {
+        } else {
             drawVertical(c, parent);
         }
     }
 
     @SuppressLint("NewApi")
-    private void drawVertical(Canvas c, RecyclerView parent)
-    {
+    private void drawVertical(Canvas c, RecyclerView parent) {
         int childCount = parent.getChildCount();
-        for(int i = 0; i < childCount; i++)
-        {
+        for(int i = 0; i < childCount; i++) {
             v = parent.getChildAt(i);
             parent.getDecoratedBoundsWithMargins(v, rect);
             c.drawLine(rect.left, rect.top, rect.left, rect.bottom, paint);
@@ -117,10 +105,8 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
         int itemDividerWidth = getItemDividerWidth(parent);
         int spanCount = getSpanCount(parent);
 
-        if(parent.getClipToPadding())
-        {
-            for(int i = spanCount - 1; i < childCount; i += spanCount)
-            {
+        if(parent.getClipToPadding()) {
+            for(int i = spanCount - 1; i < childCount; i += spanCount) {
                 v = parent.getChildAt(i);
                 parent.getDecoratedBoundsWithMargins(v, rect);
                 int left = rect.left + itemDividerWidth;
@@ -134,22 +120,15 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
         c.drawLine(left, rect.top, left, rect.bottom, paint);
     }
 
-    private int getSpanCount(RecyclerView parent)
-    {
+    private int getSpanCount(RecyclerView parent) {
         RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
-        if(layoutManager instanceof GridLayoutManager)
-        {
+        if(layoutManager instanceof GridLayoutManager) {
             return ((GridLayoutManager) layoutManager).getSpanCount();
-        }
-        else if(layoutManager instanceof StaggeredGridLayoutManager)
-        {
+        } else if(layoutManager instanceof StaggeredGridLayoutManager) {
             return ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
-        }
-        else if(layoutManager instanceof LinearLayoutManager)
-        {
+        } else if(layoutManager instanceof LinearLayoutManager) {
             int orientation = ((LinearLayoutManager) layoutManager).getOrientation();
-            if(orientation == LinearLayoutManager.HORIZONTAL)
-            {
+            if(orientation == LinearLayoutManager.HORIZONTAL) {
                 return parent.getChildCount();
             }
         }
@@ -158,12 +137,10 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
     }
 
     @SuppressLint("NewApi")
-    private void drawHorizontal(Canvas c, RecyclerView parent)
-    {
+    private void drawHorizontal(Canvas c, RecyclerView parent) {
         int itemDividerWidth = getItemDividerWidth(parent);
         int childCount = parent.getChildCount();
-        for(int i = 0; i < childCount; i++)
-        {
+        for(int i = 0; i < childCount; i++) {
             v = parent.getChildAt(i);
             parent.getDecoratedBoundsWithMargins(v, rect);
             int right = rect.left + itemDividerWidth;
@@ -171,10 +148,8 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
         }
 
         int spanCount = getSpanCount(parent);
-        if(spanCount >= 0)
-        {
-            for(int i = childCount - spanCount; i < childCount; i++)
-            {
+        if(spanCount >= 0) {
+            for(int i = childCount - spanCount; i < childCount; i++) {
                 v = parent.getChildAt(i);
                 parent.getDecoratedBoundsWithMargins(v, rect);
                 int right = rect.left + itemDividerWidth;
@@ -183,17 +158,13 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
         }
     }
 
-    private int getItemDividerWidth(RecyclerView parent)
-    {
+    private int getItemDividerWidth(RecyclerView parent) {
         RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
         int width = layoutManager.getWidth() - layoutManager.getPaddingLeft() - layoutManager
                 .getPaddingRight();
-        if(layoutManager instanceof GridLayoutManager)
-        {
+        if(layoutManager instanceof GridLayoutManager) {
             return width / ((GridLayoutManager) layoutManager).getSpanCount();
-        }
-        else if(layoutManager instanceof StaggeredGridLayoutManager)
-        {
+        } else if(layoutManager instanceof StaggeredGridLayoutManager) {
             return width / ((StaggeredGridLayoutManager) layoutManager)
                     .getSpanCount();
         }
@@ -203,15 +174,11 @@ public class PrettyItemDecoration extends RecyclerView.ItemDecoration
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
-                               RecyclerView.State state)
-    {
+                               RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-        if(orientation == HORIZONTAL)
-        {
+        if(orientation == VERTICAL) {
             outRect.set(0, dividerOffset, 0, -dividerOffset);
-        }
-        else
-        {
+        } else {
             outRect.set(dividerOffset, 0, -dividerOffset, 0);
         }
     }

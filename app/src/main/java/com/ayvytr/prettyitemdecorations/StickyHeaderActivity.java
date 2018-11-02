@@ -32,6 +32,6 @@ public class StickyHeaderActivity extends AppCompatActivity
     }
 
     public void onItemDecoration(View view) {
-        startActivity(new Intent(this, ItemDecorationActivity.class));
+        startActivity(new Intent(this, LinearItemDecorationActivity.class));
     }
 }

@@ -10,14 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".StickyHeaderActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".BasicStickyHeaderActivity"
             android:parentActivityName=".StickyHeaderActivity">
@@ -28,6 +26,8 @@
         <activity
             android:name=".TestStickyActivity2"
             android:parentActivityName=".StickyHeaderActivity"/>
+        <activity android:name=".LinearItemDecorationActivity">
+        </activity>
     </application>
 
 </manifest>
