@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '27.0.3'
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.ayvytr.prettyitemdecorations"
-        minSdkVersion 11
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -24,13 +23,14 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:25.3.1'
+    implementation rootProject.ext.support.appcompat_v7
+    implementation rootProject.ext.support.recyclerview
+
     testImplementation 'junit:junit:4.12'
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.ayvytr:EasyAndroid:2.2.0'
-    implementation 'com.android.support:recyclerview-v7:25.4.0'
-    implementation 'com.ayvytr:base-adapter:1.1.0'
+    implementation 'com.ayvytr:base-adapter:+'
     implementation project(':prettyitemdecoration')
 }
